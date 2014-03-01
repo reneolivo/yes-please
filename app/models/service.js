@@ -5,4 +5,12 @@ var theSchema = new Schema({
 	name	: ''
 });
 
-mongoose.model('Service', theSchema);
+//###### STATICS: ######//
+var Statics			= require( './core/statics' );
+
+theSchema.statics	= new Statics;
+theSchema.statics.$publicFields = [ 'name' ];
+
+//###### SET UP: ######//
+
+module.exports = mongoose.model('Service', theSchema);
