@@ -1,13 +1,12 @@
-var service = require('../../models/service');
+var model			= require('../../models/service');
+var APICrud			= require( './core/APICrud' );
 
-exports.index = function(req, res){
-	service.$find( req.query ).exec().then(function(result) {
-		res.json( result );
-	});
-};
+var controller		= new APICrud( model );
 
-exports.create = function(req, res) {
-	var r = service.$create( req.body ).then(function(result) {
-		res.json( result );
-	});
+exports.index		= function index( req, res ) {
+	return controller.index( req, res );
+}
+
+exports.create = function create( req, res ) {
+	return controller.create( req, res );
 }
